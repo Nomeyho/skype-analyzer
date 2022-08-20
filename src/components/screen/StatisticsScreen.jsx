@@ -1,33 +1,70 @@
-import { useState } from "preact/hooks";
+import { useEffect } from "preact/hooks";
 import Conversation from "../conversation/Conversation";
 import ConversationSelector from "../conversation/ConversationSelector";
-import data from "../../../data/messages.json";
+import { useAtom } from "jotai";
 import Statistics from "../statistics/Statistics";
+import Layout from "../layout/Layout";
+import {
+  fileAtom,
+  selectedConversationAtom,
+  exportDateAtom,
+} from "../../store";
+import { useNavigate } from "react-router-dom";
 
-const StatisticsEmpty = () => <div>Select a conversation</div>;
+const StatiticsScreenHeader = () => {
+  const [exportDate] = useAtom(exportDateAtom);
 
-const StatisticsContent = ({ conversation }) => (
-  <>
-    <Statistics conversation={conversation} />
-    <Conversation conversation={conversation} />
-  </>
-);
+  return (
+    <div class="flex flex-col items-center justify-center mt-8">
+      <h1 class="text-4xl tracking-tight font-bold text-white">
+        Skype Analyzer
+      </h1>
+      <h2 class="text-3xl tracking-tight text-purple-300 mt-2 mb-8">
+        Exported on {new Date(exportDate).toLocaleString()}
+      </h2>
+      <ConversationSelector />
+    </div>
+  );
+};
 
-const StatisticsScreen = () => {
-  const [conversation, setConversation] = useState(null);
+const StatisticsScreenContent = () => {
+  const [selectedConversation] = useAtom(selectedConversationAtom);
 
   return (
     <div>
-      <div>Export date: {data.exportDate}</div>
       <div>
-        <ConversationSelector data={data} onChange={setConversation} />
-        {conversation ? (
-          <StatisticsContent conversation={conversation} />
+        {selectedConversation ? (
+          <>
+            <Statistics conversation={selectedConversation} />
+            <Conversation conversation={selectedConversation} />
+          </>
         ) : (
-          <StatisticsEmpty />
+          <div>Select a conversation</div>
         )}
       </div>
     </div>
+  );
+};
+
+const StatisticsScreen = () => {
+  const navigate = useNavigate();
+  const [file] = useAtom(fileAtom);
+
+  useEffect(() => {
+    if (!file.json) {
+      navigate("/");
+    }
+  })
+
+  if (!file.json) {
+    return <></>;
+  }
+
+  return (
+    <Layout
+      header={<StatiticsScreenHeader />}
+      content={<StatisticsScreenContent />}
+    />
   );
 };
 

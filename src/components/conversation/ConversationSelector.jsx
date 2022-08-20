@@ -1,29 +1,39 @@
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useAtom } from "jotai";
+import { selectedConversationAtom, conversationsAtom } from "../../store";
 
-const getConversations = (data) =>
-  data.conversations
-    .map((conversation, i) => ({ conversation, i }))
-    .filter(({ conversation }) => !conversation.id.includes("calllog"));
+const ConversationSelector = () => {
+  const [conversations] = useAtom(conversationsAtom);
+  const [selectedConversation, setSelectedConversation] = useAtom(
+    selectedConversationAtom
+  );
 
-const getConversationByIndex = (data, index) => data.conversations[index];
-
-const ConversationSelector = ({ data, onChange }) => {
   const _onChange = (e) => {
-    const conversation = getConversationByIndex(data, e.target.value);
-    onChange(conversation);
+    const id = e.target.value;
+    const conversation = conversations.find((c) => c.id === id);
+    setSelectedConversation(conversation);
   };
 
   return (
-    <div className="w-64">
-    <select
-      onChange={_onChange}
-      class="w-64 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-    >
-      <option value="none" selected disabled hidden>Select a conversation</option>
-      {getConversations(data).map(({ conversation, i }) => (
-        <option value={i}>{conversation.displayName}</option>
-      ))}
-    </select>
+    <div className="">
+      <select
+        onChange={_onChange}
+        class="w-64 text-white font-medium bg-white bg-opacity-20 rounded-lg shadow-sm py-3 px-5 border border-white border-opacity-10 focus:outline-none"
+      >
+        <option value="none" selected disabled hidden>
+          Select a conversation
+        </option>
+        {conversations.map((conversation) => (
+          <option
+            value={conversation.id}
+            selected={
+              selectedConversation && selectedConversation.id == conversation.id
+            }
+          >
+            {conversation.displayName}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

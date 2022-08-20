@@ -2,17 +2,15 @@ import FileUploader from "../file/FileUploader";
 import Layout from "../layout/Layout";
 
 const HomeScreenHeader = () => (
-  <>
-    <h1 class="flex flex-col items-center justify-center mt-8">
-      <span class="text-4xl tracking-tight font-bold text-white">
+  <div className="flex flex-col items-center justify-center mt-8">
+    <h1 class="text-4xl tracking-tight font-bold text-white">
         Skype Analyzer
-      </span>
-      <span class="text-3xl tracking-tight text-purple-300 mt-2">
+      </h1>
+      <h2 class="text-3xl tracking-tight text-purple-300 mt-2">
         Get insights on your Skype conversations
-      </span>
-    </h1>
+      </h2>
     <FileUploader />
-  </>
+  </div>
 );
 
 const HomeScreenContent = () => <div>Content</div>;

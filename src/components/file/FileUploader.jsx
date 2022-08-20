@@ -14,7 +14,7 @@ const FileUploader = () => {
 
   const uploadFile = async (e) => {
     e.preventDefault();
-    const selectedFile = e.dataTransfer.files[0];
+    const selectedFile = e.target.files ? e.target.files[0] : e.dataTransfer.files[0];
     const text = await selectedFile.text();
 
     setFile({
