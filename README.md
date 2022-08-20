@@ -3,3 +3,4 @@
 
 ## TODO
 * Error handling
+* Off-thread processing via Web workers

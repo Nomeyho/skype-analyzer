@@ -3,7 +3,7 @@ import Layout from "../layout/Layout";
 
 const HomeScreenHeader = () => (
   <>
-    <h1 class="flex flex-col items-center justify-center mt-16">
+    <h1 class="flex flex-col items-center justify-center mt-8">
       <span class="text-4xl tracking-tight font-bold text-white">
         Skype Analyzer
       </span>

@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { UploadIcon } from "@heroicons/react/solid";
 import { useAtom } from "jotai";
 import { fileAtom } from "../../store";
-
-// TODO support drag & drop
-// TODO filter file extensionn
+import classNames from "classnames";
 
 const FileUploader = () => {
   const navigate = useNavigate();
   const [_, setFile] = useAtom(fileAtom);
+  const [hover, setHover] = useState(false);
+  const [drag, setDrag] = useState(false);
+  const highlight = hover || drag;
 
-  const selectFile = async (e) => {
-    const selectedFile = e.target.files[0];
+  const uploadFile = async (e) => {
+    e.preventDefault();
+    const selectedFile = e.dataTransfer.files[0];
     const text = await selectedFile.text();
 
     setFile({
@@ -26,14 +28,37 @@ const FileUploader = () => {
 
   return (
     <div class="flex flex-col items-center justify-center mt-8 mb-2">
-      <label class="block group max-w-xl border-4 border-dashed rounded-lg border-purple-300 hover:border-white cursor-pointer">
-        <div class="flex flex-col items-center justify-center p-6">
-          <UploadIcon className="h-8 w-8 text-purple-300 group-over:text-white" />
-          <p class="pt-1 text-md tracking-wider text-purple-300 group-hover:text-white">
-            Select your <code>message.json</code> file
+      <label
+        onDragOver={(e) => { setDrag(true); e.preventDefault() }}
+        onDrop={uploadFile}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        onDragLeave={() => setDrag(false)}
+        className={classNames(
+          "block max-w-xl border-4 border-dashed rounded-lg cursor-pointer transition-colors",
+          { "border-white": !highlight, "border-purple-300": highlight }
+        )}
+      >
+        <div class="flex flex-col items-center justify-center p-6 transition-colors" >
+          <UploadIcon
+            className={classNames("h-8 w-8 ", {
+              "text-white": !highlight,
+              "text-purple-300": highlight
+            })}
+          />
+          <p
+            className={classNames(
+              "pt-1 text-md tracking-wider transition-colors",
+              {
+                "text-white": !highlight,
+                "text-purple-300": highlight
+              }
+            )}
+          >
+            Upload your <code>messages.json</code> file
           </p>
         </div>
-        <input type="file" class="hidden" onChange={(e) => selectFile(e)} onDrop={(e) => console.log("ici", e)} />
+        <input type="file" class="hidden" onChange={uploadFile} />
       </label>
     </div>
   );
