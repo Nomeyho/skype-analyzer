@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "preact/hooks";
-import Chart from "chart.js/auto";
+import { buildDayChart, getDayChartDatasets } from "./dayChartHelper";
 
 const DayChart = ({ statistics }) => {
   const canvasRef = useRef(null);
@@ -9,36 +9,9 @@ const DayChart = ({ statistics }) => {
     if (chart) {
       chart.destroy();
     }
-
-    const lineChart = new Chart(canvasRef.current, {
-      type: "line",
-      data: {
-        datasets: [
-          {
-            data: Object.entries(statistics.messagesPerDay).map(
-              ([key, value]) => ({ x: key, y: value })
-            ),
-            borderColor: "#3e95cd",
-            fill: "origin",
-            pointRadius: 0,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-          },
-          tooltip: false,
-        },
-        hover: {
-          display: false,
-        },
-        scales: {},
-      },
-    });
-    setChart(lineChart);
+    const datasets = getDayChartDatasets(statistics.messagesPerDay);
+    const dayChart = buildDayChart(canvasRef.current, datasets);
+    setChart(dayChart);
   }, []);
 
   return (
