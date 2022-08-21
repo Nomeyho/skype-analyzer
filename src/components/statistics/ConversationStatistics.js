@@ -1,5 +1,4 @@
 
-// TODO delegate to web worker
 
 export class ConversationStatistics {
   constructor(conversation) {

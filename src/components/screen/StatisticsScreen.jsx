@@ -31,8 +31,7 @@ const StatisticsScreenContent = () => {
   const [selectedConversation] = useAtom(selectedConversationAtom);
 
   return (
-    <div>
-      <div>
+      <div className="max-w-5xl">
         {selectedConversation ? (
           <>
             <Statistics conversation={selectedConversation} />
@@ -42,7 +41,6 @@ const StatisticsScreenContent = () => {
           <div>Select a conversation</div>
         )}
       </div>
-    </div>
   );
 };
 
