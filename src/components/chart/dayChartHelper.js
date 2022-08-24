@@ -6,9 +6,7 @@ export const getDayChartDatasets = (messagesPerDay) => [
       x: key,
       y: value,
     })),
-    borderColor: "#3e95cd",
-    fill: "origin",
-    pointRadius: 0,
+  
   },
 ];
 
@@ -19,6 +17,9 @@ export const buildDayChart = (canvas, datasets) => {
       datasets,
     },
     options: {
+      pointRadius: 0,
+      borderColor: '#7e22ce',
+      fill: true,
       responsive: true,
       plugins: {
         legend: {
@@ -29,7 +30,23 @@ export const buildDayChart = (canvas, datasets) => {
       hover: {
         display: false,
       },
-      scales: {},
+      scales: {
+        y: {
+          title: {
+            display: true,
+            text: "Number of messages",
+          },
+        },
+        x: {
+          ticks: {
+            callback: function (val, index) {
+              return index % 10 == 0
+                ? new Date(this.getLabelForValue(val)).toLocaleDateString()
+                : undefined;
+            },
+          },
+        },
+      },
     },
   });
 };

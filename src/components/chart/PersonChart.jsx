@@ -16,8 +16,14 @@ const PersonChart = ({ statistics }) => {
   }, []);
 
   return (
-    <div style="position: relative; width:30vw">
-      <canvas ref={canvasRef}></canvas>
+    <div className="mx-8 my-8 max-w-3xl">
+      <h1 className="text-3xl tracking-tight font-bold text-gray-800 mb-2">
+        Person chart
+      </h1>
+      <hr />
+      <div className="w-96">
+        <canvas ref={canvasRef}></canvas>
+      </div>
     </div>
   );
 };

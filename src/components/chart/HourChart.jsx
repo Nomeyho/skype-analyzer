@@ -16,7 +16,11 @@ const HourChart = ({ statistics }) => {
   }, []);
 
   return (
-    <div style="position: relative; width:50vw">
+    <div className="mx-8 my-8 max-w-3xl">
+      <h1 className="text-3xl tracking-tight font-bold text-gray-800 mb-2">
+        Hour chart
+      </h1>
+      <hr />
       <canvas ref={canvasRef}></canvas>
     </div>
   );
