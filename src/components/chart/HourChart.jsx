@@ -20,7 +20,7 @@ const HourChart = ({ statistics }) => {
       <h1 className="text-3xl tracking-tight font-bold text-gray-800 mb-2">
         Hour chart
       </h1>
-      <hr />
+      <hr className="mb-4"/>
       <canvas ref={canvasRef}></canvas>
     </div>
   );
