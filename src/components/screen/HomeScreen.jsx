@@ -6,7 +6,7 @@ const HomeScreenHeader = () => (
     <h1 class="text-4xl tracking-tight font-bold text-white">
         Skype Analyzer
       </h1>
-      <h2 class="text-3xl tracking-tight text-purple-300 mt-2">
+      <h2 class="text-3xl tracking-tight text-sky-200 mt-2">
         Get insights on your Skype conversations
       </h2>
     <FileUploader />

@@ -10,7 +10,7 @@ export const getHourChartDatasets = (messagesPerHour) =>
       data: HOURS.map(hour => messagePerHour[hour] || 0),
       fill: "origin",
       pointRadius: 0,
-      backgroundColor: index % 2 == 0 ? "rgba(126, 34, 206, 1)" : "rgba(126, 34, 206, 0.7)",
+      backgroundColor: index % 2 == 0 ? "rgba(2, 132, 199, 1)" : "rgba(2, 132, 199, 0.7)",
     };
   });
 

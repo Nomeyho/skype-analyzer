@@ -19,7 +19,7 @@ const StatiticsScreenHeader = () => {
       <h1 class="text-4xl tracking-tight font-bold text-white">
         Skype Analyzer
       </h1>
-      <h2 class="text-3xl tracking-tight text-purple-300 mt-2 mb-8">
+      <h2 class="text-3xl tracking-tight text-sky-200 mt-2 mb-8">
         Exported on {new Date(exportDate).toLocaleString()}
       </h2>
       <ConversationSelector />
@@ -38,7 +38,7 @@ const StatisticsScreenContent = () => {
             <Conversation conversation={selectedConversation} />
           </>
         ) : (
-          <div>Select a conversation</div>
+          <div className="flex items-center">Select a conversation</div>
         )}
       </div>
   );

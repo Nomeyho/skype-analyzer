@@ -18,7 +18,7 @@ export const buildDayChart = (canvas, datasets) => {
     },
     options: {
       pointRadius: 0,
-      borderColor: '#7e22ce',
+      borderColor: 'rgb(2, 132, 199)',
       fill: true,
       responsive: true,
       plugins: {

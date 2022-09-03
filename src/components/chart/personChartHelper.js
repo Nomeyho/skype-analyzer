@@ -16,10 +16,10 @@ export const buildPersonChart = (canvas, datasets, labels) => {
     },
     options: {
       backgroundColor: [
-        "rgba(126, 34, 206, 1)",
-        "rgba(126, 34, 206, 0.7)",
-        "rgba(126, 34, 206, 0.4)",
-        "rgba(126, 34, 206, 0.1)",
+        "rgba(2, 132, 199, 1)",
+        "rgba(2, 132, 199, 0.7)",
+        "rgba(2, 132, 199, 0.4)",
+        "rgba(2, 132, 199, 0.1)",
       ],
       plugins: {
         legend: {

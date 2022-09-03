@@ -2,12 +2,13 @@ import { useState } from "preact/hooks";
 import { useNavigate } from "react-router-dom";
 import { UploadIcon } from "@heroicons/react/solid";
 import { useAtom } from "jotai";
-import { fileAtom } from "../../store";
+import { fileAtom, selectedConversationAtom } from "../../store";
 import classNames from "classnames";
 
 const FileUploader = () => {
   const navigate = useNavigate();
   const [_, setFile] = useAtom(fileAtom);
+  const [__, setSelectedConversation] = useAtom(selectedConversationAtom);
   const [hover, setHover] = useState(false);
   const [drag, setDrag] = useState(false);
   const highlight = hover || drag;
@@ -22,7 +23,8 @@ const FileUploader = () => {
       size: selectedFile.size,
       json: JSON.parse(text),
     });
-
+    
+    setSelectedConversation(undefined);
     navigate("/statistics");
   };
 
@@ -36,14 +38,14 @@ const FileUploader = () => {
         onDragLeave={() => setDrag(false)}
         className={classNames(
           "block max-w-xl border-4 border-dashed rounded-lg cursor-pointer transition-colors",
-          { "border-white": !highlight, "border-purple-300": highlight }
+          { "border-white": !highlight, "border-sky-200": highlight }
         )}
       >
         <div class="flex flex-col items-center justify-center p-6 transition-colors" >
           <UploadIcon
             className={classNames("h-8 w-8 ", {
               "text-white": !highlight,
-              "text-purple-300": highlight
+              "text-sky-200": highlight
             })}
           />
           <p
@@ -51,7 +53,7 @@ const FileUploader = () => {
               "pt-1 text-md tracking-wider transition-colors",
               {
                 "text-white": !highlight,
-                "text-purple-300": highlight
+                "text-sky-200": highlight
               }
             )}
           >
