@@ -1,12 +1,16 @@
 import RichTextMessage from "./RichTextMessage";
-import MediaMessage from "./MediaMessage";
 import Call from "../call/Call";
+import { useAtom } from "jotai";
+import { userIdAtom } from "../../store";
 
 const Message = ({ message }) => {
+  const [userId] = useAtom(userIdAtom);
+  const fromMe = userId === message.from;
+
   switch (message.messagetype) {
     case "Text":
     case "RichText":
-      return <RichTextMessage message={message} />;
+      return <RichTextMessage content={message.content} from={message.from} fromMe={fromMe} date={message.originalarrivaltime} />;
     case "Event/Call":
       return <Call message={message} />;
     case "RichText/Media_CallRecording":
@@ -15,9 +19,9 @@ const Message = ({ message }) => {
     case "RichText/Media_GenericFile":
     case "RichText/Media_Album":
     case "PopCard":
-      return <MediaMessage message={message} />;
+      return <RichTextMessage content={"Media"} from={message.from} fromMe={fromMe} date={message.originalarrivaltime} />;
     default:
-      return <div>Unhandled message type: {message.messagetype}</div>;
+      console.log(`Unhandled message: ${message}`);
   }
 };
 

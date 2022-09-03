@@ -8,6 +8,8 @@ export const fileAtom = atom({
 
 export const exportDateAtom = atom((get) => get(fileAtom).json.exportDate);
 
+export const userIdAtom = atom((get) => get(fileAtom).json.userId);
+
 export const selectedConversationAtom = atom(null);
 
 export const conversationsAtom = atom((get) =>

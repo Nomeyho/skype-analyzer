@@ -14,7 +14,7 @@ const Call = ({ message }) => {
     case "missed":
       return <MissedCall message={message} />;
     default:
-      return <div>Unhandled call type: {message.messagetype}</div>;
+      console.log(`Unhandled message: ${message}`);
   }
 };
 

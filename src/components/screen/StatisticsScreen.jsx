@@ -32,13 +32,11 @@ const StatisticsScreenContent = () => {
 
   return (
       <div className="max-w-5xl">
-        {selectedConversation ? (
+        {selectedConversation && (
           <>
             <Statistics conversation={selectedConversation} />
             <Conversation conversation={selectedConversation} />
           </>
-        ) : (
-          <div className="flex items-center">Select a conversation</div>
         )}
       </div>
   );
