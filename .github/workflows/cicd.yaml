@@ -25,7 +25,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install Yarn
-      run: npm yarn --global
+      run: npm add yarn --global
 
     - name: Install dependencies
       run: yarn
