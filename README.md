@@ -1,6 +1,7 @@
 # Skype analyzer
 > Give insights on your Skype conversations
 
-## TODO
-* Error handling
-* Off-thread processing via Web workers
+https://nomeyho.github.io/skype-analyzer/[https://nomeyho.github.io/skype-analyzer/]
+
+## How it works
+Computes and displays statistics about your Skype conversations from an export. Inspired from https://whatsanalyze.com/. 

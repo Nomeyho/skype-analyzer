@@ -3,7 +3,7 @@ import preact from '@preact/preset-vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'https://nomeyho.github.io/skype-analyzer',
+  base: '/skype-analyzer/',
   plugins: [preact()],
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' }
