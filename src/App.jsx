@@ -4,7 +4,7 @@ import StatisticsScreen from "./components/screen/StatisticsScreen";
 
 export function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/statistics" element={<StatisticsScreen />} />
