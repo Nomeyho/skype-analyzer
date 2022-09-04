@@ -57,7 +57,10 @@ const FileUploader = () => {
               }
             )}
           >
-            Upload your <code>messages.json</code> file
+            Select your <code>messages.json</code> file.
+          </p>
+          <p className="text-xs text-sky-200">
+          Your data remain in the browser, nothing is uploaded on any server.
           </p>
         </div>
         <input type="file" class="hidden" onChange={uploadFile} />

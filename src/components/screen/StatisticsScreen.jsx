@@ -35,7 +35,7 @@ const StatisticsScreenContent = () => {
         {selectedConversation && (
           <>
             <Statistics conversation={selectedConversation} />
-            <Conversation conversation={selectedConversation} />
+            { /* <Conversation conversation={selectedConversation} /> */ }
           </>
         )}
       </div>
